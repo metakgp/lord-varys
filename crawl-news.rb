@@ -10,10 +10,17 @@ begin
   puts "#{news_list.length} news articles already exist."
 rescue Exception => e
   puts "Error rescued : #{e.to_s}"
+  news_list = []
 end 
 
 id = bot.get("http://iitkgp.ac.in/").search(".description a")[0]["href"].gsub("shownews.php?newsid=","").to_i
-start = news_list.last["id"].to_i + 1
+
+begin
+  start = news_list.last["id"].to_i + 1
+rescue Exception => e
+  puts "Error rescued : #{e.to_s}"
+  start = 1
+end
 
 for i in (start..id)
   crawl_url = "http://iitkgp.ac.in/shownews.php?newsid="+i.to_s
@@ -27,6 +34,7 @@ for i in (start..id)
 end
 
 puts "#{news_list.length} news articles now."
+
 if File.exist? Dir.pwd+"/news.json"
   File.delete("news.json")
 end
