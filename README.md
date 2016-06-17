@@ -11,3 +11,7 @@ RUNNING THE SCRIPT
 ------------------
 <pre> cd path-to-metakgp-lord-varys </pre>
 <pre> ruby crawl-news.rb </pre>
+
+LICENSE 
+-------
+Licensed under GNU General Public License v3.0 (GPLv3).
